@@ -1,7 +1,7 @@
 import React from "react";
 import Graph from "react-graph-vis";
 
-//import "./network.css";
+import { useNavigate } from "react-router-dom";
 
 export const MyCustomGraph = () => {
   const graph = {
@@ -59,10 +59,18 @@ export const MyCustomGraph = () => {
     width: "100%",
   };
 
+  let navigate = useNavigate();
+
   const events = {
     select: function (event) {
-      const { nodes, edges } = event;
-      console.log(nodes);
+      const { nodes } = event;
+      if (nodes[0] == 1) {
+        navigate("/aws");
+      } else if (nodes[0] == 2) {
+        navigate("/azure");
+      } else if (nodes[0] == 3) {
+        navigate("/gcp");
+      }
     },
   };
 
