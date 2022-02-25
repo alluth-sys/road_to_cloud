@@ -1,4 +1,5 @@
 import React from "react";
+import logo from "../image/logo2.png";
 
 import {
   AppBar,
@@ -28,7 +29,7 @@ export default function Header() {
     <AppBar position="static" className={classes.header}>
       <CssBaseline />
       <Toolbar className={classes.toolbar}>
-        <CloudIcon />
+        <img src={logo} style={{ height: "40px", width: "40px" }} />
         <Typography variant="h6" style={styles.headerTitle}>
           Road to Cloud
         </Typography>

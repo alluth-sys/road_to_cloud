@@ -1,6 +1,6 @@
 import React from "react";
 import Graph from "react-graph-vis";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const StorageGraph = () => {
   const graph = {
@@ -93,13 +93,13 @@ export const StorageGraph = () => {
     width: "100%",
   };
 
-  //let navigate = useNavigate();
+  let navigate = useNavigate();
 
   const events = {
     select: function (event) {
       const { nodes } = event;
       if (nodes[0] === 1) {
-        //navigate("/aws");
+        navigate("/aws/storage/s3");
         console.log(nodes[0]);
       } else if (nodes[0] === 2) {
         //navigate("/azure");

@@ -7,6 +7,17 @@ export const MyCustomGraph = () => {
   const graph = {
     nodes: [
       {
+        id: 0,
+        label: "Cloud Computing",
+        title: "Cloud Computing",
+        color: "#03DAC6",
+        shape: "circle",
+        margin: 20,
+        font: {
+          color: "white",
+        },
+      },
+      {
         id: 1,
         label: "AWS",
         title: "Amazon Web Services",
@@ -41,9 +52,9 @@ export const MyCustomGraph = () => {
       },
     ],
     edges: [
-      { from: 1, to: 2, color: "white", length: 300 },
-      { from: 2, to: 3, color: "white", length: 300 },
-      { from: 3, to: 1, color: "white", length: 300 },
+      { from: 0, to: 1, color: "white", length: 300 },
+      { from: 0, to: 2, color: "white", length: 300 },
+      { from: 0, to: 3, color: "white", length: 300 },
     ],
   };
 

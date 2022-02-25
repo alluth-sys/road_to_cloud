@@ -11,6 +11,7 @@ import Aws from "./Pages/Aws";
 import Gcp from "./Pages/Gcp";
 import Azure from "./Pages/Azure";
 import StoragePage from "./Pages/StoragePage";
+import S3Page from "./Pages/Articles/S3Page";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/gcp" exact element={<Gcp />} />
         <Route path="/azure" exact element={<Azure />} />
         <Route path="/aws/storage" exact element={<StoragePage />} />
+        <Route path="/aws/storage/s3" exact element={<S3Page />} />
       </Routes>
     </Router>
   );
