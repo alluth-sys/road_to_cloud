@@ -1,6 +1,6 @@
 import React from "react";
 import background from "../image/app_bg.png";
-import { MyCustomGraph } from "../MyCustomGraph";
+import { MyCustomGraph } from "../Graphs/MyCustomGraph";
 
 export default function Landing() {
   return (

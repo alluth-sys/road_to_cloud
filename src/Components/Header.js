@@ -30,7 +30,7 @@ export default function Header() {
       <Toolbar className={classes.toolbar}>
         <CloudIcon />
         <Typography variant="h6" style={styles.headerTitle}>
-          Cloud Learning Platform
+          Road to Cloud
         </Typography>
       </Toolbar>
     </AppBar>

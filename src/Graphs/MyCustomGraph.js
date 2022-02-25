@@ -64,11 +64,11 @@ export const MyCustomGraph = () => {
   const events = {
     select: function (event) {
       const { nodes } = event;
-      if (nodes[0] == 1) {
+      if (nodes[0] === 1) {
         navigate("/aws");
-      } else if (nodes[0] == 2) {
+      } else if (nodes[0] === 2) {
         navigate("/azure");
-      } else if (nodes[0] == 3) {
+      } else if (nodes[0] === 3) {
         navigate("/gcp");
       }
     },
