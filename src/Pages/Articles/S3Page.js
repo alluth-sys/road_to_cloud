@@ -33,7 +33,7 @@ export default function S3Page() {
   };
 
   const handleOpenLab = () => {
-    const message = "testing123";
+    const message = "用戶實驗進行中";
 
     axios({
       method: "POST",

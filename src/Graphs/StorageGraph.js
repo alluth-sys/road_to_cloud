@@ -9,7 +9,7 @@ export const StorageGraph = () => {
         id: 0,
         label: "Storage",
         title: "Storage",
-        color: "#03DAC6",
+        color: "#027C95",
         shape: "circle",
         margin: 20,
         font: {
