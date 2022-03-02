@@ -9,21 +9,70 @@ import Button from "@mui/material/Button";
 //Icon
 import QuizIcon from "@mui/icons-material/Quiz";
 import ScienceIcon from "@mui/icons-material/Science";
+import TextField from "@mui/material/TextField";
 
-//URL
-import { AWSURL } from "../../Constant/url";
+import Modal from "react-bootstrap/Modal";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+//Axios
+import axios from "axios";
 
 export default function S3Page() {
+  const [show, setShow] = React.useState(false);
+  const [response, setResponse] = React.useState(null);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const handleOpenWindow = () => {
     window.open("https://forms.gle/iRyJqy41xurPpve79");
   };
 
   const handleOpenLab = () => {
-    window.open(AWSURL);
+    const message = "testing123";
+
+    axios({
+      method: "POST",
+      url: `https://mu6us25h47.execute-api.us-east-1.amazonaws.com/test/send-message?message=${message}&topic=arn:aws:sns:us-east-1:478977890696:Test`,
+    }).finally(() => {
+      setTimeout(() => {
+        alert("部署完成");
+      }, 2000);
+    });
+  };
+
+  const handleSendEmail = () => {
+    axios
+      .get("https://gkcoxo27w3.execute-api.us-west-2.amazonaws.com/dev/crawal")
+      .then((res) => {
+        setResponse(JSON.parse(res.data.body));
+        handleShow();
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   return (
     <div style={styles.container}>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Available Test Time</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {response ? (
+            response.map((item, index) => {
+              return <div key={index}>{item}</div>;
+            })
+          ) : (
+            <div>No Time Available</div>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
       <img src={banner} alt="banner" style={styles.imageStyle} />
       <Spacer height={"30px"} />
       <div style={styles.titleStyle}>
@@ -93,6 +142,34 @@ export default function S3Page() {
           Quiz
         </Button>
       </div>
+      <Spacer height={"100px"} />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          width: "30vw",
+          border: "1px solid black",
+          borderRadius: "10px",
+          padding: "20px",
+        }}
+      >
+        <TextField
+          variant="outlined"
+          helperText="Enter email to receive test information"
+          style={{ width: "300px" }}
+          placeholder="Email"
+          type={"email"}
+        />
+        <Spacer height={"20px"} />
+        <Button
+          variant="contained"
+          style={{ width: "50px" }}
+          onClick={handleSendEmail}
+        >
+          send
+        </Button>
+      </div>
+
       <Spacer height={"500px"} />
     </div>
   );

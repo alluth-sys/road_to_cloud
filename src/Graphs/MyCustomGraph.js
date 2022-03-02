@@ -10,18 +10,18 @@ export const MyCustomGraph = () => {
         id: 0,
         label: "Cloud Computing",
         title: "Cloud Computing",
-        color: "#03DAC6",
+        color: "#FFFFFF",
         shape: "circle",
         margin: 20,
         font: {
-          color: "white",
+          color: "black",
         },
       },
       {
         id: 1,
         label: "AWS",
         title: "Amazon Web Services",
-        color: "#03DAC6",
+        color: "#F08843",
         shape: "circle",
         margin: 20,
         font: {
@@ -32,7 +32,7 @@ export const MyCustomGraph = () => {
         id: 2,
         label: "AZURE",
         title: "Microsoft Azure",
-        color: " #da03b3",
+        color: " #1E5DD2",
         shape: "circle",
         margin: 20,
         font: {
@@ -43,7 +43,7 @@ export const MyCustomGraph = () => {
         id: 3,
         label: "GCP",
         title: "Google Cloud Platform",
-        color: "#018786",
+        color: "#58A55C",
         shape: "circle",
         margin: 20,
         font: {
