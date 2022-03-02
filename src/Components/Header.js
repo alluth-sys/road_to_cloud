@@ -12,13 +12,15 @@ import {
   makeStyles,
 } from "@material-ui/core";
 
-import CloudIcon from "@mui/icons-material/Cloud";
-
 const useStyles = makeStyles(() => ({
   header: {
     backgroundColor: "#000000",
     fontFamily: "sans-serif",
     marginBottom: "auto",
+    position: "sticky",
+    top: 0,
+    left: 0,
+    zIndex: 2,
   },
   toolbar: {
     display: "flex",
