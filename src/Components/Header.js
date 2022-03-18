@@ -1,6 +1,9 @@
 import React from "react";
 import logo from "../image/logo2.png";
 import Button from "@mui/material/Button";
+import Spacer from "react-spacer";
+import IconButton from "@mui/material/IconButton";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 import { useNavigate } from "react-router-dom";
 
@@ -24,13 +27,19 @@ const useStyles = makeStyles(() => ({
   },
   toolbar: {
     display: "flex",
-    justifyContent: "space-between",
-    marginRight: "30vw",
+    width: "100vw",
   },
 }));
 
-export default function Header() {
+export default function Header({ signOut, user }) {
+  const [username, setUsername] = React.useState("");
   const classes = useStyles();
+
+  React.useEffect(() => {
+    if (user) {
+      setUsername(user.attributes.email.split("@")[0]);
+    }
+  }, [user]);
 
   let navigate = useNavigate();
   return (
@@ -61,6 +70,7 @@ export default function Header() {
             Road to Cloud
           </Typography>
         </div>
+
         <Button
           onClick={() => {
             navigate("/landing");
@@ -71,16 +81,34 @@ export default function Header() {
           <Typography variant="subtitle1" style={{ ...styles.headerTitle }}>
             Roadmap
           </Typography>
+          <Spacer width={"20px"} />
         </Button>
         <Typography variant="subtitle1" style={styles.headerTitle}>
           Course
         </Typography>
+        <Spacer width={"20px"} />
         <Typography variant="subtitle1" style={styles.headerTitle}>
           Lab
         </Typography>
+        <Spacer width={"20px"} />
         <Typography variant="subtitle1" style={styles.headerTitle}>
           Tutor
         </Typography>
+        <div
+          style={{
+            position: "absolute",
+            marginRight: 0,
+            right: 20,
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="subtitle1">Hi, {username}</Typography>
+          <IconButton size="large" onClick={signOut} sx={{ color: "white" }}>
+            <LogoutIcon fontSize="inherit" />
+          </IconButton>
+        </div>
       </Toolbar>
     </AppBar>
   );

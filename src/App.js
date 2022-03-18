@@ -14,10 +14,12 @@ import Azure from "./Pages/Azure";
 import StoragePage from "./Pages/StoragePage";
 import S3Page from "./Pages/Articles/S3Page";
 
-function App() {
+import { withAuthenticator } from "@aws-amplify/ui-react";
+
+function App({ signOut, user }) {
   return (
     <Router>
-      <Header />
+      <Header signOut={signOut} user={user} />
       <Routes>
         <Route path="/" exact element={<LoginPage />} />
         <Route path="/landing" exact element={<Landing />} />
@@ -31,4 +33,6 @@ function App() {
   );
 }
 
-export default App;
+export default withAuthenticator(App, {
+  socialProviders: ["amazon", "google"],
+});

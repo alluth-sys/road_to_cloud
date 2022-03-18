@@ -2,7 +2,6 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 //import AWSIcon from "react-aws-icons/dist/aws/logo/AWS";
 import S3Icon from "react-aws-icons/dist/aws/logo/S3";
-import banner from "../../image/s3_banner.png";
 import Spacer from "react-spacer";
 import Button from "@mui/material/Button";
 
@@ -14,12 +13,14 @@ import OnlinePredictionIcon from "@mui/icons-material/OnlinePrediction";
 import Modal from "react-bootstrap/Modal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ClipLoader from "react-spinners/ClipLoader";
+import { Checkmark } from "react-checkmark";
 
 //Axios
 import axios from "axios";
 
 export default function S3Page() {
   const [show, setShow] = React.useState(false);
+  const [showDeploy, setShowDeploy] = React.useState(false);
   const [response, setResponse] = React.useState(null);
   const [titleResponse, setTitleResponse] = React.useState(null);
 
@@ -27,6 +28,9 @@ export default function S3Page() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleDeployClose = () => setShowDeploy(false);
+  const handleDeployShow = () => setShowDeploy(true);
 
   const handleOpenWindow = () => {
     window.open("https://forms.gle/iRyJqy41xurPpve79");
@@ -40,7 +44,7 @@ export default function S3Page() {
       url: `https://mu6us25h47.execute-api.us-east-1.amazonaws.com/test/send-message?message=${message}&topic=arn:aws:sns:us-east-1:478977890696:Test`,
     }).finally(() => {
       setTimeout(() => {
-        alert("部署完成");
+        handleDeployShow();
       }, 2000);
     });
   };
@@ -89,6 +93,25 @@ export default function S3Page() {
             Close
           </Button>
         </Modal.Footer>
+      </Modal>
+      <Modal show={showDeploy} onHide={handleDeployClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Notification</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Typography>部署成功</Typography>
+            <Spacer height={"30px"} />
+            <Checkmark size="medium" />
+          </div>
+        </Modal.Body>
       </Modal>
       {/* <img src={banner} alt="banner" style={styles.imageStyle} /> */}
       <Spacer height={"30px"} />
@@ -263,7 +286,7 @@ export default function S3Page() {
             startIcon={<OnlinePredictionIcon />}
             onClick={handleGetActivities}
           >
-            Activites
+            Activities
           </Button>
         ) : (
           <ClipLoader size={20} color="white" />
